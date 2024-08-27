@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SiswaRequest;
-use App\Models\Siswa;
 use App\Services\SiswaService;
+use App\Models\Siswa;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -18,7 +19,7 @@ class SiswaController extends Controller
 
     public function index(): View 
     {
-        $siswas = Siswa::all();
+        $siswas = $this->siswaService->all();
         return view('siswas.index', compact('siswas'));
     }
 
@@ -40,13 +41,13 @@ class SiswaController extends Controller
 
     public function update(SiswaRequest $request, Siswa $siswa): RedirectResponse
     {
-        $this->siswaService->update($siswa, $request->validated());
+        $this->siswaService->update($siswa->id, $request->validated());
         return redirect()->route('siswas.index')->with('success', 'Data Siswa Berhasil Diperbarui.');
     }
 
     public function destroy(Siswa $siswa): RedirectResponse
     {
-        $this->siswaService->delete($siswa);
+        $this->siswaService->delete($siswa->id);
         return redirect()->route('siswas.index')->with('success', 'Data berhasil dihapus');
     }
 }
