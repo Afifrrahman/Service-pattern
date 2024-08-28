@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-interface SiswaRepositoryInterface
+interface StudentRepositoryInterface
 {
     public function all();
     public function find($id);

@@ -2,15 +2,15 @@
 
 namespace App\Repositories;
 
-use App\Models\Siswa;
+use App\Models\Student;
 
-class SiswaRepository implements SiswaRepositoryInterface
+class StudentRepository implements StudentRepositoryInterface
 {
     protected $model;
 
-    public function __construct(Siswa $siswa)
+    public function __construct(Student $student)
     {
-        $this->model = $siswa;
+        $this->model = $student;
     }
 
     public function all()
@@ -30,9 +30,9 @@ class SiswaRepository implements SiswaRepositoryInterface
 
     public function update($id, array $data)
     {
-        $siswa = $this->model->find($id);
-        $siswa->update($data);
-        return $siswa;
+        $student = $this->model->find($id);
+        $student->update($data);
+        return $student;
     }
 
     public function delete($id)

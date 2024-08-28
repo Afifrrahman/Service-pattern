@@ -3,7 +3,7 @@
 @section('title', 'Tambah Siswa')
 
 @section('content')
-    <h1>Tambah Siswa</h1>
+    <h1>Add Student</h1>
 
     @if($errors->any())
         <div class="alert alert-danger">
@@ -15,35 +15,36 @@
         </div>
     @endif
 
-    <form action="{{ route('siswas.store') }}" method="POST" id="createSiswaForm">
+    <form action="{{ route('students.store') }}" method="POST" id="createStudentForm">
         @csrf
 
         <div class="form-group">
-            <label for="nama">Nama:</label>
-            <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama') }}">
-            @error('nama')
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+            @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="alamat">Alamat:</label>
-            <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat') }}</textarea>
-            @error('alamat')
+            <label for="address">Address:</label>
+            <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+            @error('address')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="jenis_kelamin">Jenis Kelamin:</label>
-            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
-                <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                <option value="Perempuan" {{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-            </select>
-            @error('jenis_kelamin')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+    <label for="gendre">Gender:</label>
+    <select name="gendre" id="gendre" class="form-control @error('gendre') is-invalid @enderror">
+        <option value="male" {{ old('gendre') == 'male' ? 'selected' : '' }}>Male</option>
+        <option value="female" {{ old('gendre') == 'female' ? 'selected' : '' }}>Female</option>
+    </select>
+    @error('gendre')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
 
         <div class="form-group">
             <label for="email">Email:</label>
@@ -54,17 +55,17 @@
         </div>
 
         <div class="form-group">
-            <label for="kelas">Kelas:</label>
-            <input type="text" name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror" value="{{ old('kelas') }}">
-            @error('kelas')
+            <label for="class">Class:</label>
+            <input type="text" name="class" id="class" class="form-control @error('class') is-invalid @enderror" value="{{ old('class') }}">
+            @error('class')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="no_telp">No Telp:</label>
-            <input type="number" name="no_telp" id="no_telp" class="form-control @error('no_telp') is-invalid @enderror" value="{{ old('no_telp') }}">
-            @error('no_telp')
+            <label for="phone_number">Phone_number:</label>
+            <input type="number" name="phone_number" id="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number') }}">
+            @error('phone_number')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -75,7 +76,7 @@
 
 @push('scripts')
     <script>
-        document.getElementById('createSiswaForm').addEventListener('submit', function(event) {
+        document.getElementById('createStudentForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let form = event.target;
             Swal.fire({

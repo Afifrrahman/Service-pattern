@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\SiswaRepository;
-use App\Repositories\SiswaRepositoryInterface;
+use App\Repositories\StudentRepository;
+use App\Repositories\StudentRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(SiswaRepositoryInterface::class, SiswaRepository::class);
+        $this->app->bind(StudentRepositoryInterface::class, StudentRepository::class);
     }
 
     /**

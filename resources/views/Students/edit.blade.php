@@ -3,7 +3,7 @@
 @section('title', 'Edit Siswa')
 
 @section('content')
-    <h1>Edit Siswa</h1>
+    <h1>Update Student</h1>
 
     @if($errors->any())
         <div class="alert alert-danger">
@@ -15,57 +15,57 @@
         </div>
     @endif
 
-    <form action="{{ route('siswas.update', $siswa->id) }}" method="POST" id="editSiswaForm">
+    <form action="{{ route('students.update', $student->id) }}" method="POST" id="editStudentForm">
         @csrf
         @method('PUT')
 
         <div class="form-group">
-            <label for="nama">Nama:</label>
-            <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" value="{{ old('nama', $siswa->nama ?? '') }}">
-            @error('nama')
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $student->name ?? '') }}">
+            @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="alamat">Alamat:</label>
-            <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{ old('alamat', $siswa->alamat ?? '') }}</textarea>
-            @error('alamat')
+            <label for="address">Address:</label>
+            <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror">{{ old('address', $student->address ?? '') }}</textarea>
+            @error('address')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="jenis_kelamin">Jenis Kelamin:</label>
-            <select name="jenis_kelamin" id="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
-                <option value="Laki-laki" {{ old('jenis_kelamin', $siswa->jenis_kelamin ?? '') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                <option value="Perempuan" {{ old('jenis_kelamin', $siswa->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+            <label for="gendre">Gender:</label>
+            <select name="gendre" id="gendre" class="form-control @error('gendre') is-invalid @enderror">
+                <option value="male" {{ old('gendre', $student->gendre ?? '') == 'male' ? 'selected' : '' }}>male</option>
+                <option value="female" {{ old('gendre', $student->gendre ?? '') == 'female' ? 'selected' : '' }}>female</option>
             </select>
-            @error('jenis_kelamin')
+            @error('gendre')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $siswa->email ?? '') }}">
+            <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $student->email ?? '') }}">
             @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="kelas">Kelas:</label>
-            <input type="text" name="kelas" id="kelas" class="form-control @error('kelas') is-invalid @enderror" value="{{ old('kelas', $siswa->kelas ?? '') }}">
-            @error('kelas')
+            <label for="class">Class:</label>
+            <input type="text" name="class" id="class" class="form-control @error('class') is-invalid @enderror" value="{{ old('class', $student->class ?? '') }}">
+            @error('class')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="form-group">
-            <label for="no_telp">No Telp:</label>
-            <input type="number" name="no_telp" id="no_telp" class="form-control @error('no_telp') is-invalid @enderror" value="{{ old('no_telp', $siswa->no_telp ?? '') }}">
-            @error('no_telp')
+            <label for="phone_number">Phone_number:</label>
+            <input type="number" name="phone_number" id="phone_number" class="form-control @error('phone_number') is-invalid @enderror" value="{{ old('phone_number', $student->phone_number ?? '') }}">
+            @error('phone_number')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -76,7 +76,7 @@
 
 @push('scripts')
     <script>
-        document.getElementById('editSiswaForm').addEventListener('submit', function(event) {
+        document.getElementById('editStudentForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let form = event.target;
             Swal.fire({
