@@ -52,6 +52,23 @@
                                                 @enderror
                                             </div>
 
+                                            <!-- Dropdown Kelas -->
+                                            <div class="form-group mb-3">
+                                                <label class="form-label" for="class_id">Kelas
+                                                    <span class="text-danger">*</span></label>
+                                                <select id="class_id" name="class_id" class="form-control @error('class_id') is-invalid @enderror">
+                                                    <option value="">Pilih Kelas</option>
+                                                    @foreach($classes as $class)
+                                                        <option value="{{ $class->id }}" {{ old('class_id') == $class->id ? 'selected' : '' }}>
+                                                            {{ $class->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('class_id')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
                                             <div class="form-group mb-3">
                                                 <label class="form-label" for="address">Alamat
                                                     <span class="text-danger">*</span></label>
@@ -77,14 +94,6 @@
                                                     <span class="text-danger">*</span></label>
                                                 <input id="email" name="email" type="email" placeholder="Email Siswa" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" />
                                                 @error('email')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-
-                                            <div class="form-group mb-3">
-                                                <label class="form-label" for="class">Kelas</label>
-                                                <input id="class" name="class" type="text" placeholder="Kelas" class="form-control @error('class') is-invalid @enderror" value="{{ old('class') }}" />
-                                                @error('class')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>

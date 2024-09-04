@@ -34,12 +34,11 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Tingkat</th>
+                                            <th>Nama Kelas</th>
                                             <th>Nama</th>
                                             <th>Alamat</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Email</th>
-                                            <th>Kelas</th>
                                             <th>Nomor Telepon</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -48,19 +47,18 @@
                                         @foreach($students as $student)
                                         <tr>
                                             <td>{{ $student->id }}</td>
-                                            <td>{{ $student->level }}</td>
+                                            <td>{{ $student->classes->name }}</td>
                                             <td>{{ $student->name }}</td>
                                             <td>{{ $student->address }}</td>
                                             <td>{{ $student->gendre }}</td>
                                             <td>{{ $student->email }}</td>
-                                            <td>{{ $student->class }}</td>
                                             <td>{{ $student->phone_number }}</td>
                                             <td>
                                                 <a href="{{ route('students.edit', $student->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display:inline-block;" class="delete-form">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                                    <button type="button" class="btn btn-danger btn-sm delete-button">Hapus</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -75,29 +73,27 @@
         </section>
     </div>
 </div>
-@endsection
 
-@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    $(document).ready(function() {
-        document.querySelectorAll('.delete-form').forEach(form => {
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                let form = event.target;
-                Swal.fire({
-                    title: 'Konfirmasi Penghapusan',
-                    text: "Yakin ingin menghapus data siswa ini?",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Ya, Hapus',
-                    cancelButtonText: 'Batal'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
+    document.querySelectorAll('.delete-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const form = this.closest('form');
+
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
             });
         });
     });
 </script>
-@endpush
+@endsection
