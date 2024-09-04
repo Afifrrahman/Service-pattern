@@ -8,7 +8,7 @@ class StudentRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true; // Atur sesuai kebutuhan otorisasi
+        return true; 
     }
 
     public function rules(): array
@@ -16,10 +16,10 @@ class StudentRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
-            'gendre' => 'required|in:male,female', // Sesuaikan dengan field gender yang ada
-            'email' => 'required|email|unique:students,email,' . ($this->student ? $this->student->id : ''),
-            'class' => 'required|string|max:100',
+            'email' => 'required|email',
+            'gendre' => 'required|in:male,female',
             'phone_number' => 'required|digits_between:10,15',
+            'class_id' => 'required|exists:classes,id',
         ];
     }
 }

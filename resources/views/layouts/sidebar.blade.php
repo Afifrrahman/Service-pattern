@@ -8,7 +8,7 @@
     <ul class="menu-wrapper">
       <li class="menu-item ripple">
         <a
-          href="{{ route('students.index') }}"
+          href="{{ route('home.index') }}"
           data-mdb-placement="right"
           data-mdb-toggle="tooltip"
           title="Beranda"
@@ -56,7 +56,7 @@
         <ul class="p-0 m-0">
           <li class="menu-item ripple">
             <a
-              href="#"
+              href="{{ route('classes.index') }}"
               data-mdb-placement="right"
               data-mdb-toggle="tooltip"
               title="Sekolah"
@@ -64,12 +64,12 @@
               class="sub-item"
             >
               <i class="far fa-building fa-fw"></i>
-              <span>Sekolah</span>
+              <span>Class</span>
             </a>
           </li>
           <li class="menu-item ripple active">
             <a
-              href="#"
+              href="{{ route('students.index') }}"
               data-mdb-placement="right"
               data-mdb-toggle="tooltip"
               title="Jurusan"
@@ -77,7 +77,7 @@
               class="sub-item"
             >
               <i data-feather="grid" class="fa-fw"></i>
-              <span>Jurusan</span>
+              <span>Student</span>
             </a>
           </li>
           <li class="menu-item ripple">

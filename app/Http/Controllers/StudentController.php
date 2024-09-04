@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StudentRequest;
 use App\Services\StudentService;
 use App\Models\Student;
+use App\Models\Classes; 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -25,7 +26,8 @@ class StudentController extends Controller
 
     public function create(): View
     {
-        return view('students.create');
+        $classes = Classes::all(); 
+        return view('students.create', compact('classes')); 
     }
 
     public function store(StudentRequest $request): RedirectResponse
@@ -36,7 +38,8 @@ class StudentController extends Controller
 
     public function edit(Student $student): View
     {
-        return view('students.edit', compact('student'));
+        $classes = Classes::all(); 
+        return view('students.edit', compact('student', 'classes')); 
     }
 
     public function update(StudentRequest $request, Student $student): RedirectResponse

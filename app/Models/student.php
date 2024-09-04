@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,6 +9,11 @@ class Student extends Model
     use HasFactory;
     
     protected $fillable = [
-        'name', 'address', 'gendre', 'email', 'class', 'phone_number',
+        'name', 'address', 'gendre', 'email', 'phone_number', 'class_id',
     ];
+
+    public function classes()
+    {
+        return $this->belongsTo(Classes::class, 'class_id');
+    }
 }
