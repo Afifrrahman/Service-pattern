@@ -54,7 +54,7 @@
 
       <div class="collapse show" id="collapseMenu3">
         <ul class="p-0 m-0">
-          <li class="menu-item ripple">
+          <li class="menu-item ripple active">
             <a
               href="{{ route('classes.index') }}"
               data-mdb-placement="right"
@@ -80,9 +80,9 @@
               <span>Student</span>
             </a>
           </li>
-          <li class="menu-item ripple">
+          <li class="menu-item ripple active">
             <a
-              href="#"
+              href="{{ route('subjects.index') }}"
               data-mdb-placement="right"
               data-mdb-toggle="tooltip"
               title="Format Nilai"
@@ -90,12 +90,12 @@
               class="sub-item"
             >
               <i data-feather="clipboard" class="fa-fw"></i>
-              <span>Format Nilai</span>
+              <span>Subject</span>
             </a>
           </li>
           <li class="menu-item ripple">
             <a
-              href="#"
+              href="{{ route('student_subjects.index') }}"
               data-mdb-placement="right"
               data-mdb-toggle="tooltip"
               title="Jadwal Peserta"
@@ -103,7 +103,7 @@
               class="sub-item"
             >
               <i class="bi bi-bookmark-check"></i>
-              <span>Jadwal Peserta</span>
+              <span>Studen Subject</span>
             </a>
           </li>
           <li class="menu-item ripple">
