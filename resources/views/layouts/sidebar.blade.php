@@ -8,7 +8,7 @@
     <ul class="menu-wrapper">
       <li class="menu-item ripple">
         <a
-          href="{{ route('home.index') }}"
+          href="{{ route('dashbord.index') }}"
           data-mdb-placement="right"
           data-mdb-toggle="tooltip"
           title="Beranda"
