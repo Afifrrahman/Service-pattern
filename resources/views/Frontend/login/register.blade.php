@@ -17,14 +17,14 @@
             @csrf
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center">Sign Up</h1>
 
-            <!-- Display Success Message -->
+            
             @if(session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
                 </div>
             @endif
 
-            <!-- Display Validation Errors -->
+            
             @if($errors->any())
                 <div class="alert alert-danger">
                     <ul>
