@@ -6,18 +6,16 @@
       type="button"
       aria-expanded="false"
       id="toggleSidebar"
-      aria-controls="offcanvasScrolling"
-    >
+      aria-controls="offcanvasScrolling">
       <i class="fa fa-bars"></i>
     </button>
 
     <!-- Navbar brand -->
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="">
       <img
         src="https://inovindoacademy.com/assets/images/logo.png"
         class="logo"
-        alt="logo"
-      />
+        alt="logo" />
     </a>
 
     <div class="d-flex align-items-center">
@@ -28,13 +26,11 @@
         data-mdb-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation">
         <img
           src="https://www.gamelab.id/uploads/members/75964/photo-ade-ridwan-75964.png"
           alt="cms"
-          class="avatar rounded-circle"
-        />
+          class="avatar rounded-circle" />
       </button>
     </div>
 
@@ -47,13 +43,12 @@
         <li class="nav-item me-3 me-lg-0">
           <a
             class="nav-link dropdown-toggle"
-            href="#"
+            href=""
             role="button"
             id="dropdownMenuLink"
             data-mdb-toggle="dropdown"
             aria-expanded="false"
-            data-mdb-offset="100,0"
-          >
+            data-mdb-offset="100,0">
             <span class="me-2 text-muted">Selamat Pagi, Administrator</span>
             <div class="d-inline-block">
               <div
@@ -63,16 +58,30 @@
                   height: 32px;
                   background-color: #bf360c;
                   font-size: 0.85rem;
-                "
-              >
-                A
+                ">
               </div>
             </div>
           </a>
+          <!-- Bagian logout di navbar -->
+          <!-- Bagian logout di navbar -->
           <ul class="dropdown-menu dropdown-menu-end border border-1" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="https://inovindoacademy.com/admin/profile"><i class="fas fa-user fa-fw me-2"></i><span>Profil Saya</span></a></li>
-            <li><hr class="dropdown-divider my-0" /></li>
-            <li><a class="dropdown-item" href="https://inovindoacademy.com/logout"><i class="fas fa-power-off fa-fw me-2"></i><span>Keluar</span></a></li>
+            <li>
+              <a class="dropdown-item" href="https://inovindoacademy.com/admin/profile">
+                <i class="fas fa-user fa-fw me-2"></i><span>Profil Saya</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider my-0" />
+            </li>
+            <li>
+              <!-- Formulir logout dengan method POST -->
+              <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                @csrf
+                <button type="submit" class="dropdown-item">
+                  <i class="fas fa-power-off fa-fw me-2"></i><span>Keluar</span>
+                </button>
+              </form>
+            </li>
           </ul>
         </li>
       </ul>
