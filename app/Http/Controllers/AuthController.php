@@ -1,14 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
+use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 
 class AuthController extends Controller
 {
+    protected $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function showLoginForm()
     {
         return view('Frontend.login.login');
@@ -19,11 +26,12 @@ class AuthController extends Controller
         return view('Frontend.login.register');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('dashbord.index');
+        
+        if ($this->userService->login($credentials)) {
+            return redirect()->route('/home');
         }
 
         return redirect()->back()->withErrors([
@@ -31,23 +39,9 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255|unique:users,name',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|confirmed|min:8',
-        ], [
-            'name.unique' => 'The name has already been taken.',
-            'email.unique' => 'The email address is already in use.',
-            'password.min' => 'The password must be at least 8 characters.',
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $this->userService->register($request->all());
 
         return redirect()->route('login')->with('status', 'Registration successful. Please log in.');
     }
